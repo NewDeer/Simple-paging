@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>详情</title>
+    <style>
+        body {
+            max-width: 750px;
+            min-height: 100vh;
+            margin: auto;
+            background: #f2f2f2;
+        }
+
+        .intro {
+            background: #fff;
+            padding: 20px;
+            font-family: PingFangSC-regular;
+        }
+
+        .intro dt {
+            float: left;
+            font-weight: bold;
+        }
+
+        .intro .chinesename {
+            margin-left: 80px;
+        }
+
+        .intro .bookname {
+            margin-left: 80px;
+            word-break: break-all;
+        }
+
+        .intro .bookstatu {
+            color: #e51c23;
+        }
+
+        .intro .price {
+            color: #e51c23;
+            font-weight: bold;
+        }
+
+        .introbutton {
+            /* display: flex; */
+            background: #fff;
+            padding: 8px 20px;
+            border-top: 1px solid #E5E5E5;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .introbutton .buttonbox {
+            background: #128BED;
+            color: #fff;
+            margin: 10px;
+            padding: 5px 21px;
+            border-radius: 3px;
+            width: 80px;
+            float: right;
+        }
+
+        .introlist {
+            background: #fff;
+            margin-bottom: 10px;
+            list-style-image: url(image/grey.png);
+        }
+
+        .introlist .introhead {
+            padding: 7px 14px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .introlist .introhead img {
+            width: 30px;
+            padding: 0 7px;
+            vertical-align: top;
+        }
+
+        .introlist .introhead span {
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .introcontent {
+            padding: 12px 20px;
+        }
+
+        .introcontent dt {
+            float: left;
+        }
+
+        .introcontent .introbox {
+            margin: 5px 0;
+        }
+
+        .introcontent img {
+            float: left;
+        }
+
+        .introcontent .contentbox {
+            margin: 5px;
+        }
+
+        .contentbox .textbox {
+            height: 20px;
+            line-height: 20px;
+            margin: 0 30px;
+        }
+
+        .contentbox span {
+            margin: 0 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="intro">
+        <dt>中文名称：</dt>
+        <dd class="chinesename"></dd>
+        <dt>英文名称：</dt>
+        <dd class="bookname"></dd>
+        <dt>标准状态：</dt>
+        <dd class="bookstatu"></dd>
+        <dt>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</dt>
+        <dd class="price"></dd>
+    </div>
+    <div class="introbutton">
+        <!-- <div class="buttonbox">收藏</div>
+        <div class="buttonbox">跟踪</div> -->
+        <div class="buttonbox">加入购物车</div>
+    </div>
+    <div class="introlist">
+        <div class="introhead">
+            <img src="image/basic.png">
+            <span>基本信息</span>
+        </div>
+        <div class="introcontent">
+            <div class="introbox">
+                <dt>发布日期：</dt>
+                <dd class="issued"></dd>
+            </div>
+            <div class="introbox">
+                <dt>实施日期：</dt>
+                <dd class="implement"></dd>
+            </div>
+            <div class="introbox">
+                <dt>出版语种：</dt>
+                <dd class="language"></dd>
+            </div>
+        </div>
+    </div>
+    <div class="introlist">
+        <div class="introhead">
+            <img src="image/range.png">
+            <span>适用范围</span>
+        </div>
+        <div class="introcontent">
+            <span class="range">本标准规定了草莓枯萎病菌的检疫鉴定方法。本
+                标准适用于草莓苗中及其携带土壤中草莓枯萎病
+                菌的检疫鉴定。</span>
+        </div>
+    </div>
+    <div class="introlist">
+        <div class="introhead">
+            <img src="image/sort.png">
+            <span>标准分类号</span>
+        </div>
+        <div class="introcontent">
+            <div class="introbox">
+                <dt>标准ICS号：</dt>
+                <dd class="icsnumber">65.020.01</dd>
+            </div>
+            <div class="introbox">
+                <dt>中标分类号：</dt>
+                <dd class="chinanumber">B16</dd>
+            </div>
+        </div>
+    </div>
+    <div class="introlist">
+        <div class="introhead">
+            <img src="image/relevance.png">
+            <span>关联标准</span>
+        </div>
+        <div class="introcontent">
+            <div class="contentbox">
+                <img src="image/blue.png">
+                <div class="textbox">替代以下标准</div>
+                <span class="replace"></span>
+            </div>
+            <div class="contentbox">
+                <img src="image/grey.png">
+                <div class="textbox">被以下标准替代</div>
+                <span class="replaced"></span>
+            </div>
+            <div class="contentbox">
+                <img src="image/grey.png">
+                <div class="textbox">引用标准</div>
+                <span class="cite"></span>
+            </div>
+            <div class="contentbox">
+                <img src="image/grey.png">
+                <div class="textbox">采用标准</div>
+                <span class="use"></span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var data = JSON.parse(sessionStorage.getItem('bookdetails'));
+        var datadetails = data.obj.standardInfo;
+        var dataprices = data.obj.prices[1];
+        var datarelations = data.obj.relations;
+        document.querySelector('.chinesename').innerHTML=datadetails.a298;
+        document.querySelector('.bookname').innerHTML=datadetails.a302;
+        document.querySelector('.bookstatu').innerHTML=datadetails.a000;
+        document.querySelector('.price').innerHTML= '￥'+dataprices.downPrice;
+        document.querySelector('.issued').innerHTML=datadetails.a101;
+        document.querySelector('.implement').innerHTML=datadetails.a205;
+        document.querySelector('.language').innerHTML=datadetails.language;
+        document.querySelector('.range').innerHTML=datadetails.a330;
+        document.querySelector('.icsnumber').innerHTML=datadetails.a826;
+        document.querySelector('.chinanumber').innerHTML=datadetails.a825;
+        document.querySelector('.replace').innerHTML=datarelations.replace;
+        document.querySelector('.replaced').innerHTML=datarelations.beReplace;
+        document.querySelector('.cite').innerHTML=datarelations.cite;
+        document.querySelector('.use').innerHTML=datarelations.use;
+    </script>
+</body>
+
+</html>

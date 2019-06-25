@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>标准查询</title>
+    <style>
+        body {
+            max-width: 750px;
+            min-height: 100vh;
+            margin: auto;
+        }
+
+        .searchbox {
+            position: relative;
+            width: 68%;
+            margin: 14px auto;
+        }
+
+        .searchbox input {
+            width: 100%;
+            border: 1px solid blue;
+            border-radius: 15px;
+            height: 30px;
+        }
+
+        .searchbox>img {
+            width: 25px;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+
+        .searchbox .tag {
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            display: inline-block;
+            width: 68px;
+            background: #108bed;
+            color: #fff;
+            width: 60px;
+            height: 22px;
+            line-height: 22px;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 1);
+            font-size: 14px;
+            text-align: left;
+            font-family: Arial;
+            padding: 3px 14px;
+        }
+
+        .searchbox .tag img {
+            width: 16px;
+            vertical-align: middle;
+            padding-left: 12px;
+        }
+
+        #p1 {
+            float: left;
+        }
+
+        .book {
+            margin: 6px 0;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .bookicon img {
+            width: 20px;
+            vertical-align: middle;
+        }
+
+        .book .booktext {
+            vertical-align: middle;
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .bookbox {
+            float: left;
+            margin: 7px;
+            font-size: 12px;
+            width: 29%;
+        }
+
+        .bookbox dt {
+            width: 82px;
+            height: 120px;
+        }
+
+        .bookbox dt img {
+            width: 82px;
+            height: 120px;
+        }
+
+        .bookbox dd {
+            width: 100px;
+        }
+
+        .bookbox2 {
+            margin: 10px 15px;
+            font-size: 12px;
+            display: flex;
+        }
+
+        .bookbox2 dt {
+            width: 82px;
+            height: 120px;
+        }
+
+        .bookbox2 dt img {
+            width: 82px;
+            height: 120px;
+        }
+
+        .bookbox2 dd {
+            margin-left: 24px;
+        }
+
+        .bookbox2 dd span {
+            padding: 10px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .bookbox2 .mark {
+            background-color: rgba(0, 150, 136, 1);
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            font-family: Arial;
+            padding: 3px;
+            border: 1px solid rgba(255, 255, 255, 0);
+        }
+
+        .bookbox2 .booktext2 {
+            padding: 1px;
+            font-size: 12px;
+            color: rgba(153, 153, 153, 1);
+            margin-top: 4px;
+        }
+
+        .shop .price {
+            float: left;
+            font-size: 20px;
+            color: #e51c23;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+
+        .shop img {
+            width: 30px;
+            float: right;
+            margin-right: 18px;
+            padding-top: 3px;
+        }
+
+        .footer {
+            font-size: 0px;
+            text-align: center;
+        }
+
+        .footer span {
+            vertical-align: middle;
+            padding: 0 12px;
+            height: 28px;
+            line-height: 28px;
+            margin: 0 -1px 5px 0;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #e2e2e2;
+            font-size: 12px;
+        }
+
+        .footer a {
+            text-decoration: none;
+            vertical-align: middle;
+            padding: 0 8px;
+            height: 28px;
+            line-height: 28px;
+            margin: 0 -1px 5px 0;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #e2e2e2;
+            font-size: 12px;
+        }
+
+        .page-click {
+            background: #108bed !important;
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="searchbox">
+        <input>
+        <img src="image/search2.png">
+        <div class="tag">
+            <div id="p1"></div>
+            <img src="image/x.png">
+        </div>
+    </div>
+    <div class="book">
+    </div>
+    <div class="footer">
+        <div class="pages">
+            <a href="javascript:;" class="item-page-num page-zero" style="display: none;">上一页</a>
+            <a href="javascript:;" class="item-page-num">1</a>
+            <span class="item-page-num page-left" style="display: none;">...</span>
+            <a href="javascript:;" class="item-page-num page-list-1 page-active">2</a>
+            <a href="javascript:;" class="item-page-num page-list-2 page-active">3</a>
+            <a href="javascript:;" class="item-page-num page-list-3 page-active">4</a>
+            <a href="javascript:;" class="item-page-num page-list-4 page-active">5</a>
+            <span class="page-right">...</span>
+            <a href="javascript:;" class="item-page-num page-len"></a>
+            <a href="javascript:;" class="item-page-num page-all">下一页</a>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // 首页搜索的结果
+        var tag;
+        tag = sessionStorage.getItem('searchInfo');
+        document.getElementById("p1").innerHTML = tag;
+        var data = JSON.parse(sessionStorage.getItem('jsonParams'));
+        var dataArr = data.obj.result;
+        $(dataArr).each(function (i) {
+            var str = '<div class="bookbox2">' +
+                '<dt>' + '<img src="' + dataArr[i].COVER + '"></dt>' +
+                '<dd>' +
+                '<span class="number">' + dataArr[i].A100 + '</span>' +
+                '<span class="mark">' + dataArr[i].a000 + '</span>' +
+                '<div class="booktext2">' + dataArr[i].a298 + '</div>' +
+                '<div class="booktext2">' + dataArr[i].A302 + '</div>' +
+                '<div class="shop">' +
+                '<div class="price">￥' + dataArr[i].priceList[0].downPrice + '</div>' +
+                '<img src="image/shop1.png">' +
+                '</div>' +
+                '</dd>' +
+                '</div>';
+            var a = $(str);
+            a.appendTo($(".book"))
+        });
+        $(".bookbox2").click(function () {
+            console.log($(this).find('.number').html());
+            var number = $(this).find('.number').html();
+            $.ajax({
+                url: 'http://124.193.187.98:17980/gbDetail/findDetail',
+                type: 'GET',
+                data: {
+                    a100: number
+                },
+                dataType: "json",
+                contentType: " application/json",
+                success: function (data) { // 接口调用成功回调函数
+                    // data 为服务器返回的数据
+                    sessionStorage.setItem('bookdetails', JSON.stringify(data));
+                    window.location.href = "details.html";
+                }
+            });
+        });
+    </script>
+    <script>
+        // 页脚分页
+        $('.item-page-num').click(function () {
+            var data = JSON.parse(sessionStorage.getItem('jsonParams'));
+            var count = data.obj.total;
+            var all = Math.ceil(count / 10);
+            var pages = $(this).text();
+            console.log(pages);
+            var two = $('.page-list-2').text();
+            var one = $('.page-list-1').text();
+            console.log(two);
+            var num;
+            if (pages != '上一页' && pages != '下一页') {
+                num = parseInt(pages);
+            } else if (pages === '上一页') {
+                num = parseInt($('.page-list-1').text()) - 1;
+                console.log(num)
+            } else if (pages === '下一页') {
+                num = parseInt($('.page-list-1').text()) + 1;
+                console.log(num)
+            }
+            if (num === 1) {
+                $('.page-left').hide();
+                $('.page-list-1').hide();
+                $(".page-zero").hide();
+            } else {
+                $('.page-list-1').show();
+                $('.page-left').show();
+                $(".page-zero").show();
+            }
+            if (num === 2) {
+                $('.page-left').hide();
+            }
+            $('.page-list-1').addClass("page-click");
+            if (num < all - 4) {
+                $('.page-list-2').show();
+                $('.page-list-3').show();
+                $('.page-list-4').show();
+                $('.page-right').show();
+                $('.page-len').show();
+                $('.page-all').show();
+                document.querySelector('.page-list-1').innerHTML = num;
+                document.querySelector('.page-list-2').innerHTML = num + 1;
+                document.querySelector('.page-list-3').innerHTML = num + 2;
+                document.querySelector('.page-list-4').innerHTML = num + 3;
+                document.querySelector('.page-len').innerHTML = all;
+            } else {
+                document.querySelector('.page-list-1').innerHTML = num;
+                $('.page-list-2').hide();
+                $('.page-list-3').hide();
+                $('.page-list-4').hide();
+                $('.page-right').hide();
+                $('.page-len').hide();
+                $('.page-all').hide();
+            }
+            var pager = {};
+            pager.size = 10;
+            pager.current = num;
+            pager.total = count;
+            var data1 = {
+                searchCondition: data.obj.resultSearchCondition,
+                pager: pager,
+                types: '标准'
+            };
+            console.log(data1);
+            // showloading(true);
+            $.ajax({
+                type: 'post',
+                data: JSON.stringify(data1),
+                url: 'http://124.193.187.98:17980/frame/search/secondSearch',
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    // showloading(false)
+                    console.log(data);
+                    if (data.success) {
+                        //查询后渲染页面
+                        // console.log(data.obj.result);
+                        $('.book').empty();
+                        var dataArr = data.obj.result;
+                        $(dataArr).each(function (i) {
+                            var str = '<div class="bookbox2">' +
+                                '<dt>' + '<img src="' + dataArr[i].COVER + '"></dt>' +
+                                '<dd>' +
+                                '<span class="number">' + dataArr[i].A100 + '</span>' +
+                                '<span class="mark">' + dataArr[i].a000 + '</span>' +
+                                '<div class="booktext2">' + dataArr[i].a298 + '</div>' +
+                                '<div class="booktext2">' + dataArr[i].A302 + '</div>' +
+                                '<div class="shop">' +
+                                '<div class="price">￥' + dataArr[i].priceList[0].downPrice +
+                                '</div>' +
+                                '<img src="image/shop1.png">' +
+                                '</div>' +
+                                '</dd>' +
+                                '</div>';
+                            var a = $(str);
+                            a.appendTo($(".book"))
+                        });
+                        $(".bookbox2").click(function () {
+                            console.log($(this).find('.number').html());
+                            var number = $(this).find('.number').html();
+                            $.ajax({
+                                url: 'http://124.193.187.98:17980/gbDetail/findDetail',
+                                type: 'GET',
+                                data: {
+                                    a100: number
+                                },
+                                dataType: "json",
+                                contentType: " application/json",
+                                success: function (data) { // 接口调用成功回调函数
+                                    // data 为服务器返回的数据
+                                    sessionStorage.setItem('bookdetails', JSON
+                                        .stringify(data));
+                                    window.location.href = "details.html";
+                                }
+                            });
+                        });
+                    }
+                },
+            });
+        });
+    </script>
+</body>
+</html>

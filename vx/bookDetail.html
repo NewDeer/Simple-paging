@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>详情</title>
+    <style>
+        body {
+            max-width: 750px;
+            min-height: 100vh;
+            margin: auto;
+            background: #f2f2f2;
+        }
+
+        .intro {
+            background: #fff;
+            padding: 20px;
+            font-family: PingFangSC-regular;
+        }
+
+        .intro dt {
+            float: left;
+            font-weight: bold;
+        }
+
+        .intro .chinesename {
+            margin-left: 80px;
+        }
+
+        .intro .bookname {
+            margin-left: 80px;
+            word-break: break-all;
+        }
+
+        .intro .bookstatu {
+            color: #e51c23;
+        }
+
+        .intro .price {
+            color: #e51c23;
+            font-weight: bold;
+        }
+
+        .introbutton {
+            /* display: flex; */
+            background: #fff;
+            padding: 8px 20px;
+            border-top: 1px solid #E5E5E5;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .introbutton .buttonbox {
+            background: #128BED;
+            color: #fff;
+            margin: 10px;
+            padding: 5px 21px;
+            border-radius: 3px;
+            width: 80px;
+            float: right;
+        }
+
+        .introlist {
+            background: #fff;
+            margin-bottom: 10px;
+            list-style-image: url(image/grey.png);
+        }
+
+        .introlist .introhead {
+            padding: 7px 14px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .introlist .introhead img {
+            width: 30px;
+            padding: 0 7px;
+            vertical-align: top;
+        }
+
+        .introlist .introhead span {
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .introcontent {
+            padding: 12px 20px;
+        }
+
+        .introcontent dt {
+            float: left;
+        }
+
+        .introcontent .introbox {
+            margin: 5px 0;
+        }
+
+        .introcontent img {
+            float: left;
+        }
+
+        .introcontent .contentbox {
+            margin: 5px;
+        }
+
+        .contentbox .textbox {
+            height: 20px;
+            line-height: 20px;
+            margin: 0 30px;
+        }
+
+        .contentbox span {
+            margin: 0 30px;
+        }
+        .range {
+            margin-left: 80px;
+        }
+        .banner {
+            background: #fff;
+            padding-top: 20px;
+        }
+        .cover {
+            margin-left: 33%;
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+            <img class="cover">
+    </div>
+    <div class="intro">
+        
+        <dt>中文名称：</dt>
+        <dd class="chinesename"></dd>
+        <dt>内容简介：</dt>
+        <dd class="range"></dd>
+        <dt>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</dt>
+        <dd class="price"></dd>
+    </div>
+    <div class="introbutton">
+        <!-- <div class="buttonbox">收藏</div>
+        <div class="buttonbox">跟踪</div> -->
+        <div class="buttonbox">加入购物车</div>
+    </div>
+    <div class="introlist">
+        <div class="introhead">
+            <img src="image/basic.png">
+            <span>基本信息</span>
+        </div>
+        <div class="introcontent">
+            <div class="introbox">
+                <dt>作者：</dt>
+                <dd class="authorFirstName"></dd>
+            </div>
+            <div class="introbox">
+                <dt>出版社：</dt>
+                <dd class="seller"></dd>
+            </div>
+            <div class="introbox">
+                <dt>页数：</dt>
+                <dd class="pagination"></dd>
+            </div>
+            <div class="introbox">
+                <dt>字数：</dt>
+                <dd class="wordCount"></dd>
+            </div>
+            <div class="introbox">
+                <dt>ISBN：</dt>
+                <dd class="isbn"></dd>
+            </div>
+            <div class="introbox">
+                <dt>所属类别：</dt>
+                <dd class="strcat"></dd>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var data = JSON.parse(sessionStorage.getItem('details'));
+        var cover = sessionStorage.getItem('cover');
+        var datadetails = data.obj.book;
+        var dataprices = data.obj.bookSku;
+        var datarelations = data.obj.relations;
+        document.querySelector('.cover').src = cover;
+        document.querySelector('.chinesename').innerHTML = datadetails.a298;
+        document.querySelector('.range').innerHTML = datadetails.a330;
+        document.querySelector('.price').innerHTML = '￥' + dataprices.downPrice;
+        document.querySelector('.authorFirstName').innerHTML = datadetails.authorFirstName;
+        document.querySelector('.seller').innerHTML = datadetails.seller;
+        document.querySelector('.pagination').innerHTML = dataprices.a305;
+        document.querySelector('.wordCount').innerHTML = dataprices.wordCount+'千字';
+        document.querySelector('.isbn').innerHTML = datadetails.a100;
+        document.querySelector('.strcat').innerHTML = datadetails.strcat;
+    </script>
+</body>
+
+</html>
